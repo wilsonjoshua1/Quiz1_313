@@ -40,12 +40,12 @@ int main(int argc, char *argv[])
             /* TODO: SLEEP FOR 6 SECONDS*/
             sleep(6);//sleep for 6 seconds
             /* TODO: EXECUTE THE COMMAND ls -l USING EXECVP*/
-            char* arg[3];
-            arg[0] = strdup("ls"); //the first coman
-            arg[1] = strdup("-l");//second half
-            arg[2] = NULL;
 
-            execvp(arg[0], arg);
+            argv[0] = strdup("ls"); //the first command
+            argv[1] = strdup("-l");//second half
+            argv[2] = NULL;
+
+            execvp(argv[0], argv);
         }
         else // if the option number is odd, terminate with a kill signal
         {
@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
        waitpid(pid, &status, option); //from the beginning of the program
 
        if(WIFEXITED(status)){
-            cout<<"The child process exited normally"<<endl;
+            cout<<"The child process exited normally"<<endl;//execute if child finished
        }
        if(WIFSIGNALED(status)){
             cout<<"The child process exited due to the kill signal"<<endl;
